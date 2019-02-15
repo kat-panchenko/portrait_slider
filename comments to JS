@@ -1,0 +1,21 @@
+'use strict';
+var btnPrev = document.querySelector('#gallery .buttons .prev');  //обьявляем переменную с кнопкой Назад
+var btnNext = document.querySelector('#gallery .buttons .next'); //обьявляем переменную с кнопкой Вперед
+var images = document.querySelectorAll('#gallery .photos img'); //получаем массив фотографий
+var i = 0;
+btnPrev.onclick = function () {
+    images[i].className = '';
+    i--;
+    if (i < 0) {                          //В ПРОГРАММИРОВАНИИ ЭЛЕМЕНТЫ СЧИТАЮТСЯ С 0!!!
+        i = images.length - 1;            //картинка с номером 0 у нас первая, а значит меньше 0 - недопустимое значение
+    }
+    images[i].className = 'showed';
+};
+btnNext.onclick = function () {
+    images[i].className = '';            //скрываем текущую картинку: задаемпустой класс
+    i++;
+    if (i >= images.length) {            //превращаем последнюю картинку в первую
+        i = 0;
+    }
+    images[i].className = 'showed';      //открываем следующую (уже текущую картинку) после скрытой по классу showed
+};
